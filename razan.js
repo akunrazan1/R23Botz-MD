@@ -1161,26 +1161,7 @@ ${Object.keys(used)
   )
   .join("\n")}
 `.trim();
-          conn.relayMessage(
-            m.chat,
-            {
-              liveLocationMessage: {
-                degreesLatitude: 35.67657,
-                degreesLongitude: 139.762148,
-                caption: respon,
-                sequenceNumber: 1656662972682001,
-                timeOffset: 8600,
-                jpegThumbnail: thumb,
-                contextInfo: {
-                  mentionedJid: [m.sender],
-                  externalAdReply: {
-                    showAdAttribution: false,
-                  },
-                },
-              },
-            },
-            { quoted: m }
-          );
+          newReply(respon);
         }
         break;
 
