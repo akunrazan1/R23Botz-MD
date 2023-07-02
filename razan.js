@@ -1082,24 +1082,24 @@ ${JSON.stringify(ha.participants)}`);
         break;
 
       // Main Menu
-      case "speedtest":
-        {
-          newReply("Testing Speed...");
-          let cp = require("child_process");
-          let { promisify } = require("util");
-          let exec = promisify(cp.exec).bind(cp);
-          let o;
-          try {
-            o = await exec("python speed.py");
-          } catch (e) {
-            o = e;
-          } finally {
-            let { stdout, stderr } = o;
-            if (stdout.trim()) newReply(stdout);
-            if (stderr.trim()) newReply(stderr);
-          }
-        }
-        break;
+      // case "speedtest":
+      //   {
+      //     newReply("Testing Speed...");
+      //     let cp = require("child_process");
+      //     let { promisify } = require("util");
+      //     let exec = promisify(cp.exec).bind(cp);
+      //     let o;
+      //     try {
+      //       o = await exec("python speed.py");
+      //     } catch (e) {
+      //       o = e;
+      //     } finally {
+      //       let { stdout, stderr } = o;
+      //       if (stdout.trim()) newReply(stdout);
+      //       if (stderr.trim()) newReply(stderr);
+      //     }
+      //   }
+      //   break;
       case "owner":
       case "creator":
         {
@@ -5718,7 +5718,6 @@ ${readmore}
 ◇ ‣ ${prefix}owner
 ◇ ‣ ${prefix}ping
 ◇ ‣ ${prefix}menu
-◇ ‣ ${prefix}speedtest
 ◇ ‣ ${prefix}script
 ◇ ‣ ${prefix}tqto
 ◇ ‣ ${prefix}runtime
