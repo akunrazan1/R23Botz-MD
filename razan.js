@@ -1183,6 +1183,7 @@ ${Object.keys(used)
   *• KilersBotz*
   *• LuckyCat*
   *• Rullxzz*
+  *• Razan*
   *• Para Subscriber*
   *• Para Penyedia Module*
   *• Para Donatur*
