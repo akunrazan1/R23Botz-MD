@@ -5589,8 +5589,8 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
           let menunya = `Hello, ${pushname}
 
 Saya adalah ${namabot} sebuah robot whatsapp yang bisa membantu anda untuk memecahkan permasalahan anda, kami menjaga keamanan data anda dan tidak menggunakan data anda, sehingga bot whatsapp ini aman untuk digunakan.
-
-乂 *I N F O  B O T*
+ 
+乂 *B O T  I N F O*
     ☍ *Creator:* ${namaowner} 
     ☍ *Mode:* ${conn.public ? "Public-Mode 👥" : "Self-Mode 👤"}
     ☍ *Bailyes:* github:razn-id/Baileys-Library
@@ -5598,12 +5598,12 @@ Saya adalah ${namabot} sebuah robot whatsapp yang bisa membantu anda untuk memec
     ☍ *Total User:* ${Object.keys(global.db.data.users).length}
     ☍ *Total Fitur:* ${totalFitur()}
   
-乂 *D A T E  I N F O*
+乂 *T I M E  I N F O*
     ☍ *Jam*: ${wib}
     ☍ *Masehi:* ${week}, ${date}
     ☍ *Hijriah:* ${dateIslamic}
 
-乂 *I N F O  U S E R*
+乂 *U S E R  I N F O*
     ☍ *Name:* ${pushname}
     ☍ *Number:* ${m.sender.split("@")[0]}
     ☍ *Status:* ${isCreator ? "Owner" : "User"}
