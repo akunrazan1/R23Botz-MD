@@ -3418,7 +3418,7 @@ ${id}`);
           if (/image/.test(mime)) {
             let media = await quoted.download();
             let encmedia = await conn.sendImageAsSticker(m.chat, media, m, {
-              packname: global.packname,
+              packname: pushname,
               author: global.author,
             });
             await fs.unlinkSync(encmedia);
@@ -3427,7 +3427,7 @@ ${id}`);
               return newReply("Maksimal 10 detik!");
             let media = await quoted.download();
             let encmedia = await conn.sendVideoAsSticker(m.chat, media, m, {
-              packname: global.packname,
+              packname: pushname,
               author: global.author,
             });
             await fs.unlinkSync(encmedia);
