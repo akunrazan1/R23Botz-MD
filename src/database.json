@@ -16,8 +16,6 @@
       "limit": "Infinity"
     }
   },
-  "premium": {},
-  "banned": {},
   "group": {
     "6282228104562@s.whatsapp.net": {
       "mute": false,
@@ -56,7 +54,9 @@
       "antilinkv2": true
     }
   },
+  "chats": {},
   "database": {},
+  "game": {},
   "settings": {
     "6282228104562@s.whatsapp.net": {
       "status": 1688195592122,
@@ -64,7 +64,7 @@
       "autoread": true
     },
     "14036211707@s.whatsapp.net": {
-      "status": 1688255533326,
+      "status": 1688346662844,
       "autobio": true,
       "autoread": true
     }
@@ -72,7 +72,7 @@
   "donate": {},
   "others": {},
   "sticker": {},
-  "chats": {},
-  "game": {},
-  "anonymous": {}
+  "anonymous": {},
+  "premium": {},
+  "banned": {}
 }

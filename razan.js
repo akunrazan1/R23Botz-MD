@@ -1082,24 +1082,24 @@ ${JSON.stringify(ha.participants)}`);
         break;
 
       // Main Menu
-      // case "speedtest":
-      //   {
-      //     newReply("Testing Speed...");
-      //     let cp = require("child_process");
-      //     let { promisify } = require("util");
-      //     let exec = promisify(cp.exec).bind(cp);
-      //     let o;
-      //     try {
-      //       o = await exec("python speed.py");
-      //     } catch (e) {
-      //       o = e;
-      //     } finally {
-      //       let { stdout, stderr } = o;
-      //       if (stdout.trim()) newReply(stdout);
-      //       if (stderr.trim()) newReply(stderr);
-      //     }
-      //   }
-      //   break;
+      case "speedtest":
+        {
+          newReply("Testing Speed...");
+          let cp = require("child_process");
+          let { promisify } = require("util");
+          let exec = promisify(cp.exec).bind(cp);
+          let o;
+          try {
+            o = await exec("python speed.py");
+          } catch (e) {
+            o = e;
+          } finally {
+            let { stdout, stderr } = o;
+            if (stdout.trim()) m.reply(stdout);
+            if (stderr.trim()) m.reply(stderr);
+          }
+        }
+        break;
       case "owner":
       case "creator":
         {
@@ -1142,14 +1142,46 @@ ${JSON.stringify(ha.participants)}`);
       case "ping":
         {
           const used = process.memoryUsage();
+          const cpus = os.cpus().map((cpu) => {
+            cpu.total = Object.keys(cpu.times).reduce(
+              (last, type) => last + cpu.times[type],
+              0
+            );
+            return cpu;
+          });
+          const cpu = cpus.reduce(
+            (last, cpu, _, { length }) => {
+              last.total += cpu.total;
+              last.speed += cpu.speed / length;
+              last.times.user += cpu.times.user;
+              last.times.nice += cpu.times.nice;
+              last.times.sys += cpu.times.sys;
+              last.times.idle += cpu.times.idle;
+              last.times.irq += cpu.times.irq;
+              return last;
+            },
+            {
+              speed: 0,
+              total: 0,
+              times: {
+                user: 0,
+                nice: 0,
+                sys: 0,
+                idle: 0,
+                irq: 0,
+              },
+            }
+          );
           let timestamp = speed();
           let latensi = speed() - timestamp;
-          let neww = performance.now();
-          let oldd = performance.now();
-          let respon = `Kecepatan Respon ${latensi.toFixed(4)} _Second_ 
-
-_Info Server_
-RAM: ${formatp(os.totalmem() - os.freemem())} / ${formatp(os.totalmem())}
+          neww = performance.now();
+          oldd = performance.now();
+          respon = `Runtime & Specification Bot 
+🔗 Runtime : ${runtime(process.uptime())}
+🖥️ Kecepatan Respon : ${latensi.toFixed(4)} _Second_
+🛑 RAM : ${formatp(os.totalmem() - os.freemem())} / ${formatp(os.totalmem())}
+⚙️ CPU Model : ${cpus[0].model.trim()}
+🔰 CPU Core : ${cpus.length} _Core_
 
 _NodeJS Memory Usaage_
 ${Object.keys(used)
@@ -1160,7 +1192,7 @@ ${Object.keys(used)
       )}`
   )
   .join("\n")}
-`.trim();
+`;
           newReply(respon);
         }
         break;
@@ -5717,6 +5749,7 @@ ${readmore}
 乂 *M A I N  M E N U*
 ◇ ‣ ${prefix}owner
 ◇ ‣ ${prefix}ping
+◇ ‣ ${prefix}speedtest
 ◇ ‣ ${prefix}menu
 ◇ ‣ ${prefix}script
 ◇ ‣ ${prefix}tqto

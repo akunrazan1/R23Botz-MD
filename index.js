@@ -469,52 +469,45 @@ async function startRazan() {
 
   conn.ev.on("connection.update", async (update) => {
     const { connection, lastDisconnect } = update;
-    try {
-      if (connection === "close") {
-        let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
-        if (reason === DisconnectReason.badSession) {
-          console.log(`Bad Session File, Please Delete Session and Scan Again`);
-          startRazan();
-        } else if (reason === DisconnectReason.connectionClosed) {
-          console.log("Connection closed, reconnecting....");
-          startRazan();
-        } else if (reason === DisconnectReason.connectionLost) {
-          console.log("Connection Lost from Server, reconnecting...");
-          startRazan();
-        } else if (reason === DisconnectReason.connectionReplaced) {
-          console.log(
-            "Connection Replaced, Another New Session Opened, Please Close Current Session First"
-          );
-          startRazan();
-        } else if (reason === DisconnectReason.loggedOut) {
-          console.log(`Device Logged Out, Please Scan Again And Run.`);
-          startRazan();
-        } else if (reason === DisconnectReason.restartRequired) {
-          console.log("Restart Required, Restarting...");
-          startRazan();
-        } else if (reason === DisconnectReason.timedOut) {
-          console.log("Connection TimedOut, Reconnecting...");
-          startRazan();
-        } else conn.end(`Unknown DisconnectReason: ${reason}|${connection}`);
-      }
-      if (
-        update.connection == "connecting" ||
-        update.receivedPendingNotifications == "false"
-      ) {
-        lolcatjs.fromString(`[Sedang mengkoneksikan]`);
-      }
-      if (
-        update.connection == "open" ||
-        update.receivedPendingNotifications == "true"
-      ) {
-        lolcatjs.fromString(`[Connecting to] WhatsApp web`);
-        lolcatjs.fromString(
-          `[Connected] ` + JSON.stringify(conn.user, null, 2)
+    if (connection === "close") {
+      let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
+      if (reason === DisconnectReason.badSession) {
+        console.log(`Bad Session File, Please Delete Session and Scan Again`);
+        startRazan();
+      } else if (reason === DisconnectReason.connectionClosed) {
+        console.log("Connection closed, reconnecting....");
+        startRazan();
+      } else if (reason === DisconnectReason.connectionLost) {
+        console.log("Connection Lost from Server, reconnecting...");
+        startRazan();
+      } else if (reason === DisconnectReason.connectionReplaced) {
+        console.log(
+          "Connection Replaced, Another New Session Opened, Please Close Current Session First"
         );
-      }
-    } catch (err) {
-      console.log("Error Di Connection.update " + err);
-      startRazan();
+        startRazan();
+      } else if (reason === DisconnectReason.loggedOut) {
+        console.log(`Device Logged Out, Please Scan Again And Run.`);
+        startRazan();
+      } else if (reason === DisconnectReason.restartRequired) {
+        console.log("Restart Required, Restarting...");
+        startRazan();
+      } else if (reason === DisconnectReason.timedOut) {
+        console.log("Connection TimedOut, Reconnecting...");
+        startRazan();
+      } else conn.end(`Unknown DisconnectReason: ${reason}|${connection}`);
+    }
+    if (
+      update.connection == "connecting" ||
+      update.receivedPendingNotifications == "false"
+    ) {
+      lolcatjs.fromString(`[Sedang mengkoneksikan]`);
+    }
+    if (
+      update.connection == "open" ||
+      update.receivedPendingNotifications == "true"
+    ) {
+      lolcatjs.fromString(`[Connecting to] WhatsApp web`);
+      lolcatjs.fromString(`[Connected] ` + JSON.stringify(conn.user, null, 2));
     }
   });
 
