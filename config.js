@@ -14,7 +14,7 @@ global.premium = ["6285736800927"];
 
 //—————「 Set Wm 」—————//
 global.packname = "";
-global.author = "Razan ラザン";
+global.author = "R23Botz - Md";
 global.prefa = ["", ".", "#", "$", "!"];
 global.sp = "•";
 
