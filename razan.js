@@ -112,8 +112,8 @@ module.exports = conn = async (conn, m, chatUpdate, store) => {
         : "";
     var budy = typeof m.text == "string" ? m.text : "";
     var prefix = prefa
-      ? /^[°•π÷×¶∆£¢€¥®™+✓_=|~/!?@#$%^&.©^]/gi.test(body)
-        ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~/!?@#$%^&.©^]/gi)[0]
+      ? /^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi.test(body)
+        ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi)[0]
         : ""
       : prefa ?? global.prefix;
     const isCmd = body.startsWith(prefix);
