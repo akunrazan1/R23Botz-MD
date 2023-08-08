@@ -112,8 +112,8 @@ module.exports = conn = async (conn, m, chatUpdate, store) => {
         : "";
     var budy = typeof m.text == "string" ? m.text : "";
     var prefix = prefa
-      ? /^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi.test(body)
-        ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi)[0]
+      ? /^[°•π÷×¶∆£¢€¥®™+✓_=|~/!?@#$%^&.©^]/gi.test(body)
+        ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~/!?@#$%^&.©^]/gi)[0]
         : ""
       : prefa ?? global.prefix;
     const isCmd = body.startsWith(prefix);
@@ -390,7 +390,7 @@ module.exports = conn = async (conn, m, chatUpdate, store) => {
           m.isGroup
             ? chalk.yellow("Group: ") + groupName
             : chalk.yellow("Private Chat"),
-          m.chat.split("@")[0]
+          // m.chat.split("@")[0]
         ),
         "\n" + chalk.blue("Isi:  "),
         chalk.green(budy || m.mtype)
@@ -2487,7 +2487,7 @@ ${id}`);
           newReply(`🚩 5 Limit Used`);
           if (!args[0])
             return newReply(
-              `Mana link nya?\nContoh :\n${prefix}${command} https://github.com/YukiShima4/tes`
+              `Mana link nya?\nContoh :\n${prefix}${command} https://github.com/razn-id/tes`
             );
           if (!isUrl(args[0]) && !args[0].includes("github.com"))
             return newReply(`Link invalid!!`);
@@ -2523,31 +2523,32 @@ ${id}`);
         newReply(mess.wait);
         axios
           .get(
-            `https://api.lolhuman.xyz/api/ytsearch?apikey=${apikey}&query=${full_args}`
+            `https://api.rivqi.my.id/api/search/ytplay?text=startboy&apikey=razanapi` //Jika Api Error Contact 6282228104562
           )
           .then(({ data }) => {
-            axios
-              .get(
-                `https://api.lolhuman.xyz/api/ytaudio2?apikey=${apikey}&url=https://www.youtube.com/watch?v=${data.result[0].videoId}`
-              )
-              .then(({ data }) => {
-                var caption = `❖ Title    : *${data.result.title}*\n`;
-                caption += `❖ Size     : *${data.result.size}*`;
-                conn
-                  .sendMessage(m.chat, {
-                    image: { url: data.result.thumbnail },
-                    caption,
-                  })
-                  .then(() => {
-                    conn.sendMessage(m.chat, {
-                      audio: { url: data.result.link },
-                      mimetype: "audio/mp4",
-                      fileName: `${data.result.title}.mp3`,
-                    });
-                  });
+            conn
+              .sendMessage(m.chat, {
+                image: { url: data.result.thum },
+                caption: `
+⭔ Title : ${data.result.title}
+⭔ Ext : Search
+⭔ ID : ${data.result.id}
+⭔ Duration : ${data.result.timestamp}
+⭔ Viewers : ${data.result.view}
+⭔ Upload At : ${data.result.uploadDate}
+⭔ Author : ${data.result.author.name}
+⭔ Channel : ${data.result.author.url}
+⭔ Description : ${data.result.desc}
+⭔ Url : ${data.result.urlVideo}`,
+              })
+              .then(() => {
+                conn.sendMessage(m.chat, {
+                  audio: { url: data.result.mp3.result },
+                  mimetype: "audio/mp4",
+                  fileName: `${data.result.title}.mp3`,
+                });
               });
-          })
-          .catch(console.error);
+          });
         break;
 
       case "ytmp3":
@@ -5602,6 +5603,13 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
           { quoted: m }
         );
         break;
+
+        case "say": {
+        if(!text) return newReply(`Example: ${prefix}say *<text>*`)
+          m.reply(text)
+        }
+        break;
+// Main Menu - MENU+
       case "menu":
       case "allmenu":
         {
