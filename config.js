@@ -4,8 +4,8 @@ const chalk = require("chalk");
 global.apikey = "19ac618f93a08bd0f1a75122"; //https://api.lolhuman.xyz
 global.rosekey = "-"; //https://api.itsrose.life
 //—————「 Set Nama Bot & Own 」—————//
-global.namabot = "R23Bot-MD V1.0";
-global.namaowner = "Razan ラザン";
+global.namabot = "R23Bot-MD";
+global.namaowner = "Razan";
 
 //—————「 Setting Owner 」—————//
 global.owner = "6285736800927";
@@ -15,7 +15,7 @@ global.premium = ["6285736800927"];
 //—————「 Set Wm 」—————//
 global.packname = "";
 global.author = "R23Botz - Md";
-global.prefa = ["", ".", "#", "$", "!", "?", "/", "~"];
+global.prefa = [".", "#", "$", "!", "?", "/", "~"];
 global.sp = "•";
 
 //—————「 Set Message 」—————//
@@ -56,3 +56,6 @@ fs.watchFile(file, () => {
   delete require.cache[file];
   require(file);
 });
+
+
+//Razan ラザン

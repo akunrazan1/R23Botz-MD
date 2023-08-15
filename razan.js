@@ -389,8 +389,7 @@ module.exports = conn = async (conn, m, chatUpdate, store) => {
         chalk.green(
           m.isGroup
             ? chalk.yellow("Group: ") + groupName
-            : chalk.yellow("Private Chat"),
-          // m.chat.split("@")[0]
+            : chalk.yellow("Private Chat: ") + `+` + m.chat.split("@")[0]
         ),
         "\n" + chalk.blue("Isi:  "),
         chalk.green(budy || m.mtype)
@@ -615,19 +614,20 @@ ${JSON.stringify(ha.participants)}`);
         }
         break;
       // Owner Fitur
-      case "ambilcase":
-        try {
-          if (!isCreator) return newReply(mess.owner);
-          if (!q) return newReply(`Example: ${prefix + command} antilink`);
-          if (q.startsWith(prefix))
-            return newReply("Query tidak boleh menggunakan prefix");
-          let nana = await getCase(q);
-          newReply(nana);
-        } catch (err) {
-          console.log(err);
-          newReply(`Case ${q} tidak di temukan`);
-        }
-        break;
+      // case "ambilcase":
+      // lagi error boskuuu!!
+      //   try {
+      //     if (!isCreator) return newReply(mess.owner);
+      //     if (!q) return newReply(`Example: ${prefix + command} antilink`);
+      //     if (q.startsWith(prefix))
+      //       return newReply("Query tidak boleh menggunakan prefix");
+      //     let nana = await getCase(q);
+      //     newReply(nana);
+      //   } catch (err) {
+      //     console.log(err);
+      //     newReply(`Case ${q} tidak di temukan`);
+      //   }
+      //   break;
       case "cekapikey":
         if (!isCreator) return newReply(mess.owner);
         let lol = await fetchJson(
@@ -1081,7 +1081,7 @@ ${JSON.stringify(ha.participants)}`);
         }
         break;
 
-      // Main Menu
+      // Menu
       case "speedtest":
         {
           newReply("Testing Speed...");
@@ -1652,12 +1652,12 @@ ${Object.keys(used)
             let txt = `「 Broadcast Bot 」\n\n${text}`;
             let buttons = [
               {
-                buttonId: "donasi",
+                buttonId: ".donasi",
                 buttonText: { displayText: "👑Sewa" },
                 type: 1,
               },
               {
-                buttonId: "rules",
+                buttonId: ".rules",
                 buttonText: { displayText: "❗Rules" },
                 type: 1,
               },
@@ -1687,12 +1687,12 @@ ${Object.keys(used)
             let txt = `「 Broadcast Bot 」\n\n${text}`;
             let buttons = [
               {
-                buttonId: "donasi",
+                buttonId: ".donasi",
                 buttonText: { displayText: "👑Sewa" },
                 type: 1,
               },
               {
-                buttonId: "rules",
+                buttonId: ".rules",
                 buttonText: { displayText: "❗Rules" },
                 type: 1,
               },
@@ -5609,7 +5609,7 @@ Lihat list Pesan Dengan ${prefix}listmsg`)
           m.reply(text)
         }
         break;
-// Main Menu - MENU+
+      //────────────────────[ MAIN MENU ]────────────────────
       case "menu":
       case "allmenu":
         {

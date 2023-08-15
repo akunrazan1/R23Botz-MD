@@ -3,7 +3,7 @@
     "6282228104562@s.whatsapp.net": {
       "afkTime": -1,
       "afkReason": "",
-      "limit": null
+      "limit": "Infinity"
     },
     "6285736800927@s.whatsapp.net": {
       "afkTime": -1,
@@ -59,7 +59,7 @@
   "database": {},
   "settings": {
     "6282228104562@s.whatsapp.net": {
-      "status": 1691425268890,
+      "status": 1691931296006,
       "autobio": true,
       "autoread": true
     },

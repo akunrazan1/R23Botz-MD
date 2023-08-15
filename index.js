@@ -111,7 +111,7 @@ if (global.db)
 console.clear();
 console.log(
   chalk.bold.green(
-    figlet.textSync("R23BOT-MD", {
+    figlet.textSync(`${namabot}`, {
       font: "Standard",
       horizontalLayout: "default",
       vertivalLayout: "default",
@@ -119,6 +119,7 @@ console.log(
     })
   )
 );
+console.log(`────────────────────[ Created By ${namaowner} ]────────────────────`)
 
 async function startRazan() {
   const { state, saveCreds } = await useMultiFileAuthState(`./session`);
@@ -472,42 +473,41 @@ async function startRazan() {
     if (connection === "close") {
       let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
       if (reason === DisconnectReason.badSession) {
-        console.log(`Bad Session File, Please Delete Session and Scan Again`);
+        console.log(`[BOT] Bad Session File, Please Delete Session and Scan Again`);
         startRazan();
       } else if (reason === DisconnectReason.connectionClosed) {
-        console.log("Connection closed, reconnecting....");
+        console.log("[BOT] Connection closed, reconnecting....");
         startRazan();
       } else if (reason === DisconnectReason.connectionLost) {
-        console.log("Connection Lost from Server, reconnecting...");
+        console.log("[BOT] Connection Lost from Server, reconnecting...");
         startRazan();
       } else if (reason === DisconnectReason.connectionReplaced) {
         console.log(
-          "Connection Replaced, Another New Session Opened, Please Close Current Session First"
+          "[BOT] Connection Replaced, Another New Session Opened, Please Close Current Session First"
         );
         startRazan();
       } else if (reason === DisconnectReason.loggedOut) {
-        console.log(`Device Logged Out, Please Scan Again And Run.`);
+        console.log(`[BOT] Device Logged Out, Please Scan Again And Run.`);
         startRazan();
       } else if (reason === DisconnectReason.restartRequired) {
-        console.log("Restart Required, Restarting...");
+        console.log("[BOT] Restart Required, Restarting...");
         startRazan();
       } else if (reason === DisconnectReason.timedOut) {
-        console.log("Connection TimedOut, Reconnecting...");
+        console.log("[BOT] Connection TimedOut, Reconnecting...");
         startRazan();
-      } else conn.end(`Unknown DisconnectReason: ${reason}|${connection}`);
+      } else conn.end(`[BOT] Unknown DisconnectReason: ${reason}|${connection}`);
     }
     if (
       update.connection == "connecting" ||
       update.receivedPendingNotifications == "false"
     ) {
-      lolcatjs.fromString(`[Sedang mengkoneksikan]`);
+      lolcatjs.fromString(`[BOT] Open Connection...`);
     }
     if (
       update.connection == "open" ||
       update.receivedPendingNotifications == "true"
     ) {
-      lolcatjs.fromString(`[Connecting to] WhatsApp web`);
-      lolcatjs.fromString(`[Connected] ` + JSON.stringify(conn.user, null, 2));
+      lolcatjs.fromString(`[BOT] Connected to: ` + conn.user.name + `, ` + `+` + conn.user.id.split(":")[0]);
     }
   });
 
